@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { post } from "../../application/middlewares";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 function Form ({visible, setCloseModal, form, values, token, updatePost, addPost}) {
@@ -23,6 +23,7 @@ function Form ({visible, setCloseModal, form, values, token, updatePost, addPost
     }, [visible])
 
     const onSubmit = (data) =>{
+        setLoading(true)
         dispatch(post({
             url: form === "add" ?  "/api/add-post" : `api/admin/update-post/${values?.id}`,
             token,
@@ -36,6 +37,7 @@ function Form ({visible, setCloseModal, form, values, token, updatePost, addPost
                         console.log("hello update success")
                         updatePost({id:values?.id, ...data, status_id:2})
                     }
+                    setLoading(false)
                     reset({name:"", email:"", text:""})
                 }else{
                     toast.error("что то пошло не так")
@@ -43,7 +45,7 @@ function Form ({visible, setCloseModal, form, values, token, updatePost, addPost
             }
         }))
     }
-
+    const [loading, setLoading] = useState()
     return(
         <Modal
             opened = {visible}
@@ -56,7 +58,7 @@ function Form ({visible, setCloseModal, form, values, token, updatePost, addPost
                 <TextInput className="mt-1" label={"Введите ваше имя"} placeholder={"Довран"} {...register("name")} error = {errors?.name?.message}/>
                 <TextInput className="mt-1" label={"Введите ваш email"} placeholder={"ddowran2106@gmail.com"} {...register("email")} error = {errors?.email?.message}/>
                 <Textarea className="mt-1 " label={"Введите ваш текст"} placeholder={"какойто текст"} {...register("text")} error = {errors?.text?.message}/>
-                <Button variant="outline" type="submit" className="mt-2">
+                <Button loading={loading} variant="outline" type="submit" className="mt-2">
                     {form === "add" ? "Добавить" : "Изменить"}
                 </Button>
             </form>

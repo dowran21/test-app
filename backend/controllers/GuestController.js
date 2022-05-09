@@ -4,7 +4,7 @@ const { status } = require("../utils/status");
 const AddPost = async (req, res) =>{
     const {name, email, text} = req.body;
     const query_text = `
-        INSERT INTO to_do_list(name, email, text) VALUES ($1, $2, $3) RETURNING name, email, text
+        INSERT INTO to_do_list(name, email, text) VALUES ($1, $2, $3) RETURNING id, status_id, name, email, text
     `
     try {
         const {rows} = await database.query(query_text, [name, email, text])

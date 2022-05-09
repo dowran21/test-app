@@ -14,7 +14,7 @@ const port = process.env.PORT || 3000
 app.use(morgan("dev"))   
 
 
-const allowedOrigins = ['http://localhost:3000']
+const allowedOrigins = ['http://localhost:3000', 'http://141.136.44.10:5000']
 app.use(cookieParser())
 app.use(express.json());
 app.use(express.urlencoded({limit: '500000kb', extended : true}));
