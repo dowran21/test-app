@@ -9,7 +9,7 @@ import toast from "react-hot-toast";
 
 function Form ({visible, setCloseModal, form, values, token, updatePost, addPost}) {
     const dispatch = useDispatch()
-    const {getValues, setValue, formState: { errors }, setError, reset, register, handleSubmit} = useForm({
+    const {setValue, formState: { errors }, reset, register, handleSubmit} = useForm({
         resolver:yupResolver(schema)
     })
     useEffect(()=>{
@@ -19,7 +19,7 @@ function Form ({visible, setCloseModal, form, values, token, updatePost, addPost
                     setValue(key, values[key])
                 }
             })
-        }
+        }// eslint-disable-next-line
     }, [visible])
 
     const onSubmit = (data) =>{

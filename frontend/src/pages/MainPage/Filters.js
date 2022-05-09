@@ -1,4 +1,4 @@
-import { Group, TextInput, Select, ActionIcon, Button } from "@mantine/core";
+import { Group, TextInput, Select, ActionIcon } from "@mantine/core";
 import {IoMdAdd} from "@react-icons/all-files/io/IoMdAdd"
 
 function Filters ({openModal, handleSearch, seFilter}){
@@ -16,10 +16,7 @@ function Filters ({openModal, handleSearch, seFilter}){
         <Group position="apart" className="pt-3">
             <TextInput placeholder="Имя или email" radius={"md"} onChange = {(e) => handleSearch(e.target.value)} />
             <Group direction="row">
-                <Select placeholder="Сортировка" onChange={(value)=>seFilter(select_data.filter(item => {
-                    if(item.value === value) 
-                    return item
-                })[0])} data = {select_data} />
+                <Select placeholder="Сортировка" onChange={(value)=>seFilter(select_data.filter(item => +item?.value === +value)[0])} data = {select_data} />
                 <ActionIcon onClick={()=>openModal()} variant="outline" className="text-blue-500 hover:text-indigo-600"><IoMdAdd className="text-blue-500 hover:text-indigo-600"/></ActionIcon>
             </Group>
         </Group>

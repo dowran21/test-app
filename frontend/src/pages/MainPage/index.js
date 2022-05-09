@@ -33,13 +33,14 @@ function reducer (state, action){
                 page:1
             }   
         case "SET_FILTER":
-            return {
+           {console.log(action.payload)
+                return {
                 ...state,
                 column:action.payload?.column,
                 direction:action.payload?.direction,
                 trigger:!state?.trigger,
                 page:1
-            }
+            }}
         case "SET_DATA":
             return {
                 ...state,
@@ -111,7 +112,7 @@ function MainPage (){
                     toast.error("sometihnig went wwronf")
                 }
             }
-        }))
+        })) // eslint-disable-next-line
     }, [state.trigger])
 
     const handleSearch = useTimeOut({action : (value) => setState({type:"SET_SEARCH",payload:value}), time:500})

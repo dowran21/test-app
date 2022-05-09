@@ -6,7 +6,6 @@ import { useForm } from "react-hook-form";
 import { post } from '../../application/middlewares/index';
 import { SetCookie } from '../../utils/cookie';
 import { loginSuccess } from '../../application/actions/auth';
-import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -41,7 +40,7 @@ function Login (){
         <div className="pt-5 w-full h-full relative flex flex-row justify-center w-full h-full  items-center lg:px-40">
         <form style={{height:450}} onSubmit = {handleSubmit(onSubmit)} className="w-full max-w-sm relative px-8 flex flex-col justify-center items-center rounded-xl shadow-2xl mx-2 sm:mx-6 lg:mx-12">
             <p className="text-3xl pt-3 pb-2 font-semibold text-center text-gray-800">
-                Зарегестрироваться
+                Войти
             </p>
             <div className="w-full flex flex-col mt-12">
                 <div className="relative w-full mb-6">
