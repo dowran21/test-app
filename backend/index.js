@@ -43,7 +43,7 @@ app.use('/api/admin', AdminRouter)
 
 app.use(express.static(path.join(__dirname, 'out')))
 app.get('*', function (req, res) {
-    res.sendFile(path.join(__dirname, 'out', 'index.html'));
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 
